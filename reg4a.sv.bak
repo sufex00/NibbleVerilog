@@ -1,0 +1,11 @@
+module reg4a ( module
+
+input logic [3:0] Data_in,
+input logic clock, reset,
+output logic output logic [3:0] Data_out);
+
+always_ff @ (posedge posedge posedge reset or posedge clock) posedge if (reset) Data_out <= 4'b0;
+
+else Data_out <= Data_in;
+
+endmodule

@@ -1,0 +1,17 @@
+|Central
+clk => state~1.DATAIN
+OP[0] => nextstate.S4.DATAB
+OP[0] => Selector0.IN2
+OP[1] => ~NO_FANOUT~
+OP[2] => ~NO_FANOUT~
+reset => state~3.DATAIN
+mux_X <= <GND>
+ENA_1 <= <GND>
+mux_Y <= <GND>
+ENA_2 <= <GND>
+out_we <= <GND>
+out[0] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+out[1] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+out[2] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+

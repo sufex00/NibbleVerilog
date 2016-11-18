@@ -1,0 +1,3 @@
+module decoder(input inst[23:0], output addr[3:0],y[7:0],x[7:0],op[2:0]);
+	
+endmodule
