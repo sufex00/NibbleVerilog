@@ -24,7 +24,7 @@ module single_port_rom
         $readmemb("single_port_rom_init.txt", rom);
     end
  
-    always @ (posedge clk)
+    always @ (negedge clk)
     begin
         q <= rom[addr];
     end

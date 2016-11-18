@@ -1,4 +1,4 @@
-module complement2(input [7:0] a, b, output reg ovf, output reg [7:0] s);
+module complement2(input [7:0] a, output reg ovf, output reg [7:0] s);
 
 	reg x, z;
 	always@(*) begin

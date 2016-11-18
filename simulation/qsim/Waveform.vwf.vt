@@ -19,40 +19,28 @@
 // the top level entity of the current Quartus project .The user can use this   
 // testbench to simulate his design using a third-party simulation tool .       
 // *****************************************************************************
-// Generated on "11/17/2016 22:06:23"
+// Generated on "11/18/2016 00:39:33"
                                                                                 
-// Verilog Test Bench (with test vectors) for design :                          Central
+// Verilog Test Bench (with test vectors) for design :                          main
 // 
 // Simulation tool : 3rd Party
 // 
 
 `timescale 1 ps/ 1 ps
-module Central_vlg_vec_tst();
+module main_vlg_vec_tst();
 // constants                                           
 // general purpose registers
-reg [2:0] OP;
 reg clk;
-reg reset;
+reg clrn;
 // wires                                               
-wire ENA_1;
-wire ENA_2;
-wire mux_X;
-wire mux_Y;
-wire [2:0] out;
-wire out_we;
+wire [7:0] out;
 
 // assign statements (if any)                          
-Central i1 (
+main i1 (
 // port map - connection between master ports and signals/registers   
-	.ENA_1(ENA_1),
-	.ENA_2(ENA_2),
-	.OP(OP),
 	.clk(clk),
-	.mux_X(mux_X),
-	.mux_Y(mux_Y),
-	.out(out),
-	.out_we(out_we),
-	.reset(reset)
+	.clrn(clrn),
+	.out(out)
 );
 initial 
 begin 
@@ -67,26 +55,11 @@ begin
 	#5000;
 end 
 
-// reset
+// clrn
 initial
 begin
-	reset = 1'b1;
-	reset = #60000 1'b0;
-end 
-// OP[ 2 ]
-initial
-begin
-	OP[2] = 1'b0;
-end 
-// OP[ 1 ]
-initial
-begin
-	OP[1] = 1'b0;
-end 
-// OP[ 0 ]
-initial
-begin
-	OP[0] = 1'b1;
+	clrn = 1'b1;
+	clrn = #60000 1'b0;
 end 
 endmodule
 

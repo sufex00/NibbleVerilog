@@ -1,0 +1,5 @@
+module main(clk, clrn);
+	input		clk;
+	input		clrn;
+	reg 		[3:0]Data_out;
+	reg4a PC (,clk, clrn, Data_out);

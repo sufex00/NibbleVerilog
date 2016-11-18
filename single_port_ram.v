@@ -16,7 +16,7 @@ module single_port_ram
 	// Variable to hold the registered read address
 	reg [4:0] addr_reg;
 
-	always @ (posedge clk)
+	always @ (negedge clk)
 	begin
 		// Write
 		if (we)

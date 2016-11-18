@@ -1,5 +1,5 @@
 Analysis & Synthesis report for nibble
-Thu Nov 17 23:49:00 2016
+Fri Nov 18 00:39:23 2016
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
 
 
@@ -16,11 +16,15 @@ Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
   8. Registers Removed During Synthesis
   9. Removed Registers Triggering Further Register Optimizations
  10. General Register Statistics
- 11. Port Connectivity Checks: "sum1:ADD1"
- 12. Port Connectivity Checks: "reg5a:PC"
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+ 11. Parameter Settings for User Entity Instance: Central:center
+ 12. Port Connectivity Checks: "single_port_ram:ram"
+ 13. Port Connectivity Checks: "reg_x:reg_R"
+ 14. Port Connectivity Checks: "fullAdder8:Add8"
+ 15. Port Connectivity Checks: "complement2:COMP"
+ 16. Port Connectivity Checks: "sum1:ADD1"
+ 17. Post-Synthesis Netlist Statistics for Top Partition
+ 18. Elapsed Time Per Partition
+ 19. Analysis & Synthesis Messages
 
 
 
@@ -47,14 +51,14 @@ agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Nov 17 23:49:00 2016       ;
+; Analysis & Synthesis Status     ; Successful - Fri Nov 18 00:39:23 2016       ;
 ; Quartus Prime Version           ; 16.0.0 Build 211 04/27/2016 SJ Lite Edition ;
 ; Revision Name                   ; nibble                                      ;
 ; Top-level Entity Name           ; main                                        ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 19                                          ;
-; Total pins                      ; 26                                          ;
+; Total registers                 ; 11                                          ;
+; Total pins                      ; 10                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -171,8 +175,15 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                       ; Library ;
 +----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------+---------+
+; mux2.v                           ; yes             ; User Verilog HDL File        ; /home/pedro/Verilog/Nibble-VERILOG-master/mux2.v                   ;         ;
+; single_port_ram.v                ; yes             ; User Verilog HDL File        ; /home/pedro/Verilog/Nibble-VERILOG-master/single_port_ram.v        ;         ;
 ; single_pot_rom.v                 ; yes             ; User Verilog HDL File        ; /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v         ;         ;
+; fullAdder8.v                     ; yes             ; User Verilog HDL File        ; /home/pedro/Verilog/Nibble-VERILOG-master/fullAdder8.v             ;         ;
+; decoder.sv                       ; yes             ; User SystemVerilog HDL File  ; /home/pedro/Verilog/Nibble-VERILOG-master/decoder.sv               ;         ;
 ; sum1.sv                          ; yes             ; User SystemVerilog HDL File  ; /home/pedro/Verilog/Nibble-VERILOG-master/sum1.sv                  ;         ;
+; complement2.sv                   ; yes             ; User SystemVerilog HDL File  ; /home/pedro/Verilog/Nibble-VERILOG-master/complement2.sv           ;         ;
+; reg_x.sv                         ; yes             ; User SystemVerilog HDL File  ; /home/pedro/Verilog/Nibble-VERILOG-master/reg_x.sv                 ;         ;
+; Central.v                        ; yes             ; User Verilog HDL File        ; /home/pedro/Verilog/Nibble-VERILOG-master/Central.v                ;         ;
 ; main.v                           ; yes             ; User Verilog HDL File        ; /home/pedro/Verilog/Nibble-VERILOG-master/main.v                   ;         ;
 ; reg5a.v                          ; yes             ; User Verilog HDL File        ; /home/pedro/Verilog/Nibble-VERILOG-master/reg5a.v                  ;         ;
 ; single_port_rom_init.txt         ; yes             ; Auto-Found File              ; /home/pedro/Verilog/Nibble-VERILOG-master/single_port_rom_init.txt ;         ;
@@ -184,25 +195,25 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 10        ;
+; Estimate of Logic utilization (ALMs needed) ; 6         ;
 ;                                             ;           ;
-; Combinational ALUT usage for logic          ; 11        ;
+; Combinational ALUT usage for logic          ; 10        ;
 ;     -- 7 input functions                    ; 0         ;
-;     -- 6 input functions                    ; 0         ;
-;     -- 5 input functions                    ; 7         ;
+;     -- 6 input functions                    ; 1         ;
+;     -- 5 input functions                    ; 2         ;
 ;     -- 4 input functions                    ; 1         ;
-;     -- <=3 input functions                  ; 3         ;
+;     -- <=3 input functions                  ; 6         ;
 ;                                             ;           ;
-; Dedicated logic registers                   ; 19        ;
+; Dedicated logic registers                   ; 11        ;
 ;                                             ;           ;
-; I/O pins                                    ; 26        ;
+; I/O pins                                    ; 10        ;
 ;                                             ;           ;
 ; Total DSP Blocks                            ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 19        ;
-; Total fan-out                               ; 122       ;
-; Average fan-out                             ; 1.49      ;
+; Maximum fan-out                             ; 11        ;
+; Total fan-out                               ; 78        ;
+; Average fan-out                             ; 1.90      ;
 +---------------------------------------------+-----------+
 
 
@@ -211,51 +222,72 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------------+------------+------+--------------+---------------------------+-----------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name       ; Entity Name     ; Library Name ;
 +----------------------------+-------------------+--------------+-------------------+------------+------+--------------+---------------------------+-----------------+--------------+
-; |main                      ; 11 (0)            ; 19 (8)       ; 0                 ; 0          ; 26   ; 0            ; |main                     ; main            ; work         ;
+; |main                      ; 10 (0)            ; 11 (1)       ; 0                 ; 0          ; 10   ; 0            ; |main                     ; main            ; work         ;
+;    |Central:center|        ; 3 (3)             ; 3 (3)        ; 0                 ; 0          ; 0    ; 0            ; |main|Central:center      ; Central         ; work         ;
 ;    |reg5a:PC|              ; 5 (5)             ; 5 (5)        ; 0                 ; 0          ; 0    ; 0            ; |main|reg5a:PC            ; reg5a           ; work         ;
-;    |single_port_rom:rom|   ; 6 (6)             ; 6 (6)        ; 0                 ; 0          ; 0    ; 0            ; |main|single_port_rom:rom ; single_port_rom ; work         ;
+;    |reg_x:reg_R|           ; 1 (1)             ; 1 (1)        ; 0                 ; 0          ; 0    ; 0            ; |main|reg_x:reg_R         ; reg_x           ; work         ;
+;    |single_port_rom:rom|   ; 1 (1)             ; 1 (1)        ; 0                 ; 0          ; 0    ; 0            ; |main|single_port_rom:rom ; single_port_rom ; work         ;
 +----------------------------+-------------------+--------------+-------------------+------------+------+--------------+---------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+--------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                         ;
-+---------------------------------------------------+----------------------------------------+
-; Register name                                     ; Reason for Removal                     ;
-+---------------------------------------------------+----------------------------------------+
-; single_port_rom:rom|q[1..7,10,12,14..16,19,20,23] ; Merged with single_port_rom:rom|q[0]   ;
-; single_port_rom:rom|q[13]                         ; Merged with single_port_rom:rom|q[11]  ;
-; single_port_rom:rom|q[22]                         ; Merged with single_port_rom:rom|q[21]  ;
-; single_port_rom:rom|q[0]                          ; Stuck at GND due to stuck port data_in ;
-; out[0]~reg0                                       ; Stuck at GND due to stuck port data_in ;
-; out[1]~reg0                                       ; Stuck at GND due to stuck port data_in ;
-; out[2]~reg0                                       ; Stuck at GND due to stuck port data_in ;
-; out[3]~reg0                                       ; Stuck at GND due to stuck port data_in ;
-; out[4]~reg0                                       ; Stuck at GND due to stuck port data_in ;
-; out[5]~reg0                                       ; Stuck at GND due to stuck port data_in ;
-; out[6]~reg0                                       ; Stuck at GND due to stuck port data_in ;
-; out[7]~reg0                                       ; Stuck at GND due to stuck port data_in ;
-; out[10]~reg0                                      ; Stuck at GND due to stuck port data_in ;
-; out[12]~reg0                                      ; Stuck at GND due to stuck port data_in ;
-; out[14]~reg0                                      ; Stuck at GND due to stuck port data_in ;
-; out[15]~reg0                                      ; Stuck at GND due to stuck port data_in ;
-; out[16]~reg0                                      ; Stuck at GND due to stuck port data_in ;
-; out[19]~reg0                                      ; Stuck at GND due to stuck port data_in ;
-; out[20]~reg0                                      ; Stuck at GND due to stuck port data_in ;
-; out[23]~reg0                                      ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 34            ;                                        ;
-+---------------------------------------------------+----------------------------------------+
++--------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                   ;
++----------------------------------------+---------------------------------------------+
+; Register name                          ; Reason for Removal                          ;
++----------------------------------------+---------------------------------------------+
+; single_port_ram:ram|addr_reg[4]        ; Stuck at GND due to stuck port data_in      ;
+; reg_x:reg_R|Data_out[1..7]             ; Stuck at GND due to stuck port data_in      ;
+; out[1]~reg0                            ; Stuck at GND due to stuck port data_in      ;
+; out[2]~reg0                            ; Stuck at GND due to stuck port data_in      ;
+; out[3]~reg0                            ; Stuck at GND due to stuck port data_in      ;
+; out[4]~reg0                            ; Stuck at GND due to stuck port data_in      ;
+; out[5]~reg0                            ; Stuck at GND due to stuck port data_in      ;
+; out[6]~reg0                            ; Stuck at GND due to stuck port data_in      ;
+; out[7]~reg0                            ; Stuck at GND due to stuck port data_in      ;
+; single_port_rom:rom|q[1..6,9..14,22]   ; Lost fanout                                 ;
+; single_port_rom:rom|q[19,21]           ; Merged with single_port_rom:rom|q[16]       ;
+; single_port_ram:ram|addr_reg[3]        ; Merged with single_port_ram:ram|addr_reg[0] ;
+; single_port_rom:rom|q[16]              ; Stuck at GND due to stuck port data_in      ;
+; single_port_rom:rom|q[0]               ; Lost fanout                                 ;
+; single_port_ram:ram|addr_reg[0]        ; Stuck at GND due to stuck port data_in      ;
+; single_port_ram:ram|addr_reg[1]        ; Lost fanout                                 ;
+; single_port_rom:rom|q[17]              ; Lost fanout                                 ;
+; single_port_ram:ram|addr_reg[2]        ; Lost fanout                                 ;
+; single_port_rom:rom|q[18]              ; Lost fanout                                 ;
+; Total Number of Removed Registers = 38 ;                                             ;
++----------------------------------------+---------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                       ;
-+--------------------------+---------------------------+--------------------------------------------------------------------------------------------+
-; Register name            ; Reason for Removal        ; Registers Removed due to This Register                                                     ;
-+--------------------------+---------------------------+--------------------------------------------------------------------------------------------+
-; single_port_rom:rom|q[0] ; Stuck at GND              ; out[0]~reg0, out[1]~reg0, out[2]~reg0, out[3]~reg0, out[4]~reg0, out[5]~reg0, out[6]~reg0, ;
-;                          ; due to stuck port data_in ; out[7]~reg0, out[10]~reg0, out[12]~reg0, out[14]~reg0, out[15]~reg0, out[16]~reg0,         ;
-;                          ;                           ; out[19]~reg0, out[20]~reg0, out[23]~reg0                                                   ;
-+--------------------------+---------------------------+--------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                    ;
++---------------------------------+---------------------------+----------------------------------------------------------------------------------+
+; Register name                   ; Reason for Removal        ; Registers Removed due to This Register                                           ;
++---------------------------------+---------------------------+----------------------------------------------------------------------------------+
+; single_port_ram:ram|addr_reg[4] ; Stuck at GND              ; single_port_rom:rom|q[6], single_port_rom:rom|q[5], single_port_rom:rom|q[4],    ;
+;                                 ; due to stuck port data_in ; single_port_rom:rom|q[3], single_port_rom:rom|q[2], single_port_rom:rom|q[1],    ;
+;                                 ;                           ; single_port_rom:rom|q[10], single_port_rom:rom|q[11], single_port_rom:rom|q[12], ;
+;                                 ;                           ; single_port_rom:rom|q[13], single_port_rom:rom|q[14], single_port_rom:rom|q[22], ;
+;                                 ;                           ; single_port_rom:rom|q[0]                                                         ;
+; reg_x:reg_R|Data_out[7]         ; Stuck at GND              ; out[7]~reg0                                                                      ;
+;                                 ; due to stuck port data_in ;                                                                                  ;
+; reg_x:reg_R|Data_out[6]         ; Stuck at GND              ; out[6]~reg0                                                                      ;
+;                                 ; due to stuck port data_in ;                                                                                  ;
+; reg_x:reg_R|Data_out[5]         ; Stuck at GND              ; out[5]~reg0                                                                      ;
+;                                 ; due to stuck port data_in ;                                                                                  ;
+; reg_x:reg_R|Data_out[4]         ; Stuck at GND              ; out[4]~reg0                                                                      ;
+;                                 ; due to stuck port data_in ;                                                                                  ;
+; reg_x:reg_R|Data_out[3]         ; Stuck at GND              ; out[3]~reg0                                                                      ;
+;                                 ; due to stuck port data_in ;                                                                                  ;
+; reg_x:reg_R|Data_out[2]         ; Stuck at GND              ; out[2]~reg0                                                                      ;
+;                                 ; due to stuck port data_in ;                                                                                  ;
+; reg_x:reg_R|Data_out[1]         ; Stuck at GND              ; out[1]~reg0                                                                      ;
+;                                 ; due to stuck port data_in ;                                                                                  ;
+; single_port_rom:rom|q[16]       ; Stuck at GND              ; single_port_ram:ram|addr_reg[0]                                                  ;
+;                                 ; due to stuck port data_in ;                                                                                  ;
+; single_port_ram:ram|addr_reg[1] ; Lost Fanouts              ; single_port_rom:rom|q[17]                                                        ;
+; single_port_ram:ram|addr_reg[2] ; Lost Fanouts              ; single_port_rom:rom|q[18]                                                        ;
++---------------------------------+---------------------------+----------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -263,14 +295,68 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 19    ;
+; Total registers                              ; 11    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 5     ;
+; Number of registers using Asynchronous Clear ; 9     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Central:center ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; S0             ; 000   ; Unsigned Binary                    ;
+; S1             ; 001   ; Unsigned Binary                    ;
+; S2             ; 010   ; Unsigned Binary                    ;
+; S3             ; 011   ; Unsigned Binary                    ;
+; S4             ; 100   ; Unsigned Binary                    ;
+; S5             ; 101   ; Unsigned Binary                    ;
+; S6             ; 110   ; Unsigned Binary                    ;
+; S7             ; 111   ; Unsigned Binary                    ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "single_port_ram:ram"                                                                                                                        ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                      ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; addr ; Input ; Warning  ; Input port expression (4 bits) is smaller than the input port (5 bits) it drives.  Extra input bit(s) "addr[4..4]" will be connected to GND. ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg_x:reg_R"                                                                                                                                      ;
++---------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                                                                                         ;
++---------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Data_in ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (8 bits) it drives.  Extra input bit(s) "Data_in[7..1]" will be connected to GND. ;
++---------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fullAdder8:Add8"                                                                                                     ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                              ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------------------+
+; ovf  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                  ;
+; s    ; Output ; Warning  ; Output or bidir port (8 bits) is wider than the port expression (1 bits) it drives; bit(s) "s[7..1]" have no fanouts ;
++------+--------+----------+----------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "complement2:COMP"                                                                   ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; ovf  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------+
@@ -282,36 +368,26 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "reg5a:PC"                                                                                                                                                                            ;
-+---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port    ; Type  ; Severity ; Details                                                                                                                                                                            ;
-+---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; ena     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
-; ena[-1] ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
-+---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 19                          ;
-;     CLR               ; 5                           ;
-;     plain             ; 14                          ;
-; arriav_lcell_comb     ; 12                          ;
-;     normal            ; 12                          ;
+; arriav_ff             ; 11                          ;
+;     CLR               ; 9                           ;
+;     plain             ; 2                           ;
+; arriav_lcell_comb     ; 11                          ;
+;     normal            ; 11                          ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 1                           ;
-;         2 data inputs ; 1                           ;
-;         3 data inputs ; 1                           ;
+;         2 data inputs ; 2                           ;
+;         3 data inputs ; 4                           ;
 ;         4 data inputs ; 1                           ;
-;         5 data inputs ; 7                           ;
-; boundary_port         ; 26                          ;
+;         5 data inputs ; 2                           ;
+;         6 data inputs ; 1                           ;
+; boundary_port         ; 10                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 1.00                        ;
-; Average LUT depth     ; 0.48                        ;
+; Average LUT depth     ; 0.83                        ;
 +-----------------------+-----------------------------+
 
 
@@ -330,7 +406,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
-    Info: Processing started: Thu Nov 17 23:48:44 2016
+    Info: Processing started: Fri Nov 18 00:39:08 2016
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off nibble -c nibble
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file mux2.v
@@ -365,47 +441,57 @@ Info (12021): Found 1 design units, including 1 entities, in source file main.v
     Info (12023): Found entity 1: main File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file reg5a.v
     Info (12023): Found entity 1: reg5a File: /home/pedro/Verilog/Nibble-VERILOG-master/reg5a.v Line: 1
-Warning (10236): Verilog HDL Implicit Net warning at main.v(10): created implicit net for "ovf1" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 10
+Warning (10236): Verilog HDL Implicit Net warning at main.v(8): created implicit net for "mux_X" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 8
+Warning (10236): Verilog HDL Implicit Net warning at main.v(8): created implicit net for "ENA_1" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 8
+Warning (10236): Verilog HDL Implicit Net warning at main.v(8): created implicit net for "mux_Y" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 8
+Warning (10236): Verilog HDL Implicit Net warning at main.v(8): created implicit net for "ENA_2" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 8
+Warning (10236): Verilog HDL Implicit Net warning at main.v(8): created implicit net for "out_we" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 8
+Warning (10236): Verilog HDL Implicit Net warning at main.v(13): created implicit net for "ovf1" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 13
+Warning (10236): Verilog HDL Implicit Net warning at main.v(24): created implicit net for "ovf2" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 24
+Warning (10236): Verilog HDL Implicit Net warning at main.v(33): created implicit net for "ovf3" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 33
+Warning (10236): Verilog HDL Implicit Net warning at main.v(33): created implicit net for "Add8_out" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 33
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Info (12128): Elaborating entity "reg5a" for hierarchy "reg5a:PC" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 9
-Info (12128): Elaborating entity "sum1" for hierarchy "sum1:ADD1" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 10
-Info (12128): Elaborating entity "single_port_rom" for hierarchy "single_port_rom:rom" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 13
-Warning (10850): Verilog HDL warning at single_pot_rom.v(24): number of words (5) in memory file does not match the number of elements in the address range [0:31] File: /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v Line: 24
+Info (12128): Elaborating entity "Central" for hierarchy "Central:center" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 8
+Warning (10235): Verilog HDL Always Construct warning at Central.v(56): variable "OP" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/pedro/Verilog/Nibble-VERILOG-master/Central.v Line: 56
+Info (12128): Elaborating entity "reg5a" for hierarchy "reg5a:PC" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 12
+Info (12128): Elaborating entity "sum1" for hierarchy "sum1:ADD1" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 13
+Info (12128): Elaborating entity "single_port_rom" for hierarchy "single_port_rom:rom" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 16
+Warning (10850): Verilog HDL warning at single_pot_rom.v(24): number of words (7) in memory file does not match the number of elements in the address range [0:31] File: /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v Line: 24
 Warning (10030): Net "rom.data_a" at single_pot_rom.v(12) has no driver or initial value, using a default initial value '0' File: /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v Line: 12
 Warning (10030): Net "rom.waddr_a" at single_pot_rom.v(12) has no driver or initial value, using a default initial value '0' File: /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v Line: 12
 Warning (10030): Net "rom.we_a" at single_pot_rom.v(12) has no driver or initial value, using a default initial value '0' File: /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v Line: 12
-Info (276014): Found 1 instances of uninferred RAM logic
+Info (12128): Elaborating entity "decoder" for hierarchy "decoder:DEC" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 21
+Warning (10230): Verilog HDL assignment warning at decoder.sv(4): truncated value with size 5 to match size of target (4) File: /home/pedro/Verilog/Nibble-VERILOG-master/decoder.sv Line: 4
+Info (12128): Elaborating entity "complement2" for hierarchy "complement2:COMP" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 24
+Info (12128): Elaborating entity "mux2" for hierarchy "mux2:MUX2_X" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 27
+Info (12128): Elaborating entity "fullAdder8" for hierarchy "fullAdder8:Add8" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 33
+Info (12128): Elaborating entity "reg_x" for hierarchy "reg_x:reg_R" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 36
+Info (12128): Elaborating entity "single_port_ram" for hierarchy "single_port_ram:ram" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 39
+Info (276014): Found 2 instances of uninferred RAM logic
+    Info (276004): RAM logic "single_port_ram:ram|ram" is uninferred due to inappropriate RAM size File: /home/pedro/Verilog/Nibble-VERILOG-master/single_port_ram.v Line: 14
     Info (276004): RAM logic "single_port_rom:rom|rom" is uninferred due to inappropriate RAM size File: /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v Line: 12
 Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "/home/pedro/Verilog/Nibble-VERILOG-master/db/nibble.ram0_single_port_rom_7cbe853a.hdl.mif" contains "don't care" values -- overwriting them with 0s
-Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "out[0]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[1]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[2]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[3]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[4]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[5]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[6]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[7]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[10]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[12]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[14]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[15]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[16]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[19]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[20]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
-    Warning (13410): Pin "out[23]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[1]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 41
+    Warning (13410): Pin "out[2]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 41
+    Warning (13410): Pin "out[3]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 41
+    Warning (13410): Pin "out[4]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 41
+    Warning (13410): Pin "out[5]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 41
+    Warning (13410): Pin "out[6]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 41
+    Warning (13410): Pin "out[7]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 41
 Info (286030): Timing-Driven Synthesis is running
+Info (17049): 18 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 45 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 21 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
-    Info (21059): Implemented 24 output pins
-    Info (21061): Implemented 19 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 25 warnings
-    Info: Peak virtual memory: 1284 megabytes
-    Info: Processing ended: Thu Nov 17 23:49:00 2016
-    Info: Elapsed time: 00:00:16
+    Info (21059): Implemented 8 output pins
+    Info (21061): Implemented 11 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 26 warnings
+    Info: Peak virtual memory: 1285 megabytes
+    Info: Processing ended: Fri Nov 18 00:39:23 2016
+    Info: Elapsed time: 00:00:15
     Info: Total CPU time (on all processors): 00:00:38
 
 

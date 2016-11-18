@@ -1,15 +1,14 @@
-module Central(clk, OP, reset, mux_X, ENA_1, mux_Y, ENA_2, out_we, out);
+module Central(clk, OP, reset, mux_X, ENA_1, mux_Y, ENA_2, out_we);
 	input		clk;
 	input		reset;
 	input		[2:0] OP;
 	
 	
-	output		mux_X;
-	output		mux_Y;
-	output		ENA_1;
-	output		ENA_2;
-	output reg		out_we;
-	output reg	[2:0] out;
+	output reg	mux_X;
+	output reg	mux_Y;
+	output reg	ENA_1;
+	output reg	ENA_2;
+	output reg	out_we;
 
 	reg [2:0] 	state;
 	reg [2:0] 	nextstate;
@@ -25,19 +24,27 @@ module Central(clk, OP, reset, mux_X, ENA_1, mux_Y, ENA_2, out_we, out);
 
 // State Register
 
+always @( * )
+begin
+	mux_X <= OP[1];
+	mux_Y <= OP[0];
+	ENA_2 <= state[2];
+	ENA_1 <= ~state[2];
+end
+ 
 always @(negedge clk or posedge reset)
 begin
 	if (reset) 	state <= S0;
 	else		state <= nextstate;
 	
-   out <= state; 
 end
 // Next State Logic
 
 always @(state)
 begin
-	case (state)
+	
 	out_we <= 0;
+	case (state)
 		S0: 
 			nextstate <= S1;
 		S1: 
