@@ -1,5 +1,5 @@
 Analysis & Synthesis report for nibble
-Thu Nov 17 22:09:44 2016
+Thu Nov 17 23:49:00 2016
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
 
 
@@ -10,7 +10,17 @@ Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Port Connectivity Checks: "sum1:ADD1"
+ 12. Port Connectivity Checks: "reg5a:PC"
+ 13. Post-Synthesis Netlist Statistics for Top Partition
+ 14. Elapsed Time Per Partition
+ 15. Analysis & Synthesis Messages
 
 
 
@@ -34,22 +44,27 @@ agreement for further details.
 
 
 
-+---------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                              ;
-+-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Thu Nov 17 22:09:44 2016           ;
-; Quartus Prime Version       ; 16.0.0 Build 211 04/27/2016 SJ Lite Edition ;
-; Revision Name               ; nibble                                      ;
-; Top-level Entity Name       ; Central                                     ;
-; Family                      ; Cyclone V                                   ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
-; Total registers             ; N/A until Partition Merge                   ;
-; Total pins                  ; N/A until Partition Merge                   ;
-; Total virtual pins          ; N/A until Partition Merge                   ;
-; Total block memory bits     ; N/A until Partition Merge                   ;
-; Total PLLs                  ; N/A until Partition Merge                   ;
-; Total DLLs                  ; N/A until Partition Merge                   ;
-+-----------------------------+---------------------------------------------+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Thu Nov 17 23:49:00 2016       ;
+; Quartus Prime Version           ; 16.0.0 Build 211 04/27/2016 SJ Lite Edition ;
+; Revision Name                   ; nibble                                      ;
+; Top-level Entity Name           ; main                                        ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 19                                          ;
+; Total pins                      ; 26                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -58,7 +73,7 @@ agreement for further details.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CGXFC7C7F23C8     ;                    ;
-; Top-level entity name                                                           ; Central            ; nibble             ;
+; Top-level entity name                                                           ; main               ; nibble             ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
@@ -151,13 +166,171 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                           ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                       ; Library ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------+---------+
+; single_pot_rom.v                 ; yes             ; User Verilog HDL File        ; /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v         ;         ;
+; sum1.sv                          ; yes             ; User SystemVerilog HDL File  ; /home/pedro/Verilog/Nibble-VERILOG-master/sum1.sv                  ;         ;
+; main.v                           ; yes             ; User Verilog HDL File        ; /home/pedro/Verilog/Nibble-VERILOG-master/main.v                   ;         ;
+; reg5a.v                          ; yes             ; User Verilog HDL File        ; /home/pedro/Verilog/Nibble-VERILOG-master/reg5a.v                  ;         ;
+; single_port_rom_init.txt         ; yes             ; Auto-Found File              ; /home/pedro/Verilog/Nibble-VERILOG-master/single_port_rom_init.txt ;         ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 10        ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 11        ;
+;     -- 7 input functions                    ; 0         ;
+;     -- 6 input functions                    ; 0         ;
+;     -- 5 input functions                    ; 7         ;
+;     -- 4 input functions                    ; 1         ;
+;     -- <=3 input functions                  ; 3         ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 19        ;
+;                                             ;           ;
+; I/O pins                                    ; 26        ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 19        ;
+; Total fan-out                               ; 122       ;
+; Average fan-out                             ; 1.49      ;
++---------------------------------------------+-----------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                               ;
++----------------------------+-------------------+--------------+-------------------+------------+------+--------------+---------------------------+-----------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name       ; Entity Name     ; Library Name ;
++----------------------------+-------------------+--------------+-------------------+------------+------+--------------+---------------------------+-----------------+--------------+
+; |main                      ; 11 (0)            ; 19 (8)       ; 0                 ; 0          ; 26   ; 0            ; |main                     ; main            ; work         ;
+;    |reg5a:PC|              ; 5 (5)             ; 5 (5)        ; 0                 ; 0          ; 0    ; 0            ; |main|reg5a:PC            ; reg5a           ; work         ;
+;    |single_port_rom:rom|   ; 6 (6)             ; 6 (6)        ; 0                 ; 0          ; 0    ; 0            ; |main|single_port_rom:rom ; single_port_rom ; work         ;
++----------------------------+-------------------+--------------+-------------------+------------+------+--------------+---------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                         ;
++---------------------------------------------------+----------------------------------------+
+; Register name                                     ; Reason for Removal                     ;
++---------------------------------------------------+----------------------------------------+
+; single_port_rom:rom|q[1..7,10,12,14..16,19,20,23] ; Merged with single_port_rom:rom|q[0]   ;
+; single_port_rom:rom|q[13]                         ; Merged with single_port_rom:rom|q[11]  ;
+; single_port_rom:rom|q[22]                         ; Merged with single_port_rom:rom|q[21]  ;
+; single_port_rom:rom|q[0]                          ; Stuck at GND due to stuck port data_in ;
+; out[0]~reg0                                       ; Stuck at GND due to stuck port data_in ;
+; out[1]~reg0                                       ; Stuck at GND due to stuck port data_in ;
+; out[2]~reg0                                       ; Stuck at GND due to stuck port data_in ;
+; out[3]~reg0                                       ; Stuck at GND due to stuck port data_in ;
+; out[4]~reg0                                       ; Stuck at GND due to stuck port data_in ;
+; out[5]~reg0                                       ; Stuck at GND due to stuck port data_in ;
+; out[6]~reg0                                       ; Stuck at GND due to stuck port data_in ;
+; out[7]~reg0                                       ; Stuck at GND due to stuck port data_in ;
+; out[10]~reg0                                      ; Stuck at GND due to stuck port data_in ;
+; out[12]~reg0                                      ; Stuck at GND due to stuck port data_in ;
+; out[14]~reg0                                      ; Stuck at GND due to stuck port data_in ;
+; out[15]~reg0                                      ; Stuck at GND due to stuck port data_in ;
+; out[16]~reg0                                      ; Stuck at GND due to stuck port data_in ;
+; out[19]~reg0                                      ; Stuck at GND due to stuck port data_in ;
+; out[20]~reg0                                      ; Stuck at GND due to stuck port data_in ;
+; out[23]~reg0                                      ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 34            ;                                        ;
++---------------------------------------------------+----------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                       ;
++--------------------------+---------------------------+--------------------------------------------------------------------------------------------+
+; Register name            ; Reason for Removal        ; Registers Removed due to This Register                                                     ;
++--------------------------+---------------------------+--------------------------------------------------------------------------------------------+
+; single_port_rom:rom|q[0] ; Stuck at GND              ; out[0]~reg0, out[1]~reg0, out[2]~reg0, out[3]~reg0, out[4]~reg0, out[5]~reg0, out[6]~reg0, ;
+;                          ; due to stuck port data_in ; out[7]~reg0, out[10]~reg0, out[12]~reg0, out[14]~reg0, out[15]~reg0, out[16]~reg0,         ;
+;                          ;                           ; out[19]~reg0, out[20]~reg0, out[23]~reg0                                                   ;
++--------------------------+---------------------------+--------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 19    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 5     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "sum1:ADD1"                                                                          ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; ovf  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "reg5a:PC"                                                                                                                                                                            ;
++---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                                                                                                                            ;
++---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; ena     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; ena[-1] ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
++---------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 19                          ;
+;     CLR               ; 5                           ;
+;     plain             ; 14                          ;
+; arriav_lcell_comb     ; 12                          ;
+;     normal            ; 12                          ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 1                           ;
+;         3 data inputs ; 1                           ;
+;         4 data inputs ; 1                           ;
+;         5 data inputs ; 7                           ;
+; boundary_port         ; 26                          ;
+;                       ;                             ;
+; Max LUT depth         ; 1.00                        ;
+; Average LUT depth     ; 0.48                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Lite Edition
-    Info: Processing started: Thu Nov 17 22:09:27 2016
+    Info: Processing started: Thu Nov 17 23:48:44 2016
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off nibble -c nibble
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file mux2.v
@@ -186,13 +359,53 @@ Info (12021): Found 1 design units, including 1 entities, in source file reg_op.
     Info (12023): Found entity 1: reg_op File: /home/pedro/Verilog/Nibble-VERILOG-master/reg_op.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file reg_inst.sv
     Info (12023): Found entity 1: reg_inst File: /home/pedro/Verilog/Nibble-VERILOG-master/reg_inst.sv Line: 1
-Error (10170): Verilog HDL syntax error at Central.v(40) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Altera Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /home/pedro/Verilog/Nibble-VERILOG-master/Central.v Line: 40
-Error (10112): Ignored design unit "Central" at Central.v(1) due to previous errors File: /home/pedro/Verilog/Nibble-VERILOG-master/Central.v Line: 1
-Info (12021): Found 0 design units, including 0 entities, in source file Central.v
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 1 warning
-    Error: Peak virtual memory: 1223 megabytes
-    Error: Processing ended: Thu Nov 17 22:09:44 2016
-    Error: Elapsed time: 00:00:17
-    Error: Total CPU time (on all processors): 00:00:40
+Info (12021): Found 1 design units, including 1 entities, in source file Central.v
+    Info (12023): Found entity 1: Central File: /home/pedro/Verilog/Nibble-VERILOG-master/Central.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file main.v
+    Info (12023): Found entity 1: main File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file reg5a.v
+    Info (12023): Found entity 1: reg5a File: /home/pedro/Verilog/Nibble-VERILOG-master/reg5a.v Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at main.v(10): created implicit net for "ovf1" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 10
+Info (12127): Elaborating entity "main" for the top level hierarchy
+Info (12128): Elaborating entity "reg5a" for hierarchy "reg5a:PC" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 9
+Info (12128): Elaborating entity "sum1" for hierarchy "sum1:ADD1" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 10
+Info (12128): Elaborating entity "single_port_rom" for hierarchy "single_port_rom:rom" File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 13
+Warning (10850): Verilog HDL warning at single_pot_rom.v(24): number of words (5) in memory file does not match the number of elements in the address range [0:31] File: /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v Line: 24
+Warning (10030): Net "rom.data_a" at single_pot_rom.v(12) has no driver or initial value, using a default initial value '0' File: /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v Line: 12
+Warning (10030): Net "rom.waddr_a" at single_pot_rom.v(12) has no driver or initial value, using a default initial value '0' File: /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v Line: 12
+Warning (10030): Net "rom.we_a" at single_pot_rom.v(12) has no driver or initial value, using a default initial value '0' File: /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v Line: 12
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "single_port_rom:rom|rom" is uninferred due to inappropriate RAM size File: /home/pedro/Verilog/Nibble-VERILOG-master/single_pot_rom.v Line: 12
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "/home/pedro/Verilog/Nibble-VERILOG-master/db/nibble.ram0_single_port_rom_7cbe853a.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "out[0]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[1]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[2]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[3]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[4]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[5]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[6]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[7]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[10]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[12]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[14]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[15]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[16]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[19]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[20]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+    Warning (13410): Pin "out[23]" is stuck at GND File: /home/pedro/Verilog/Nibble-VERILOG-master/main.v Line: 15
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 45 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 24 output pins
+    Info (21061): Implemented 19 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 25 warnings
+    Info: Peak virtual memory: 1284 megabytes
+    Info: Processing ended: Thu Nov 17 23:49:00 2016
+    Info: Elapsed time: 00:00:16
+    Info: Total CPU time (on all processors): 00:00:38
 
 
